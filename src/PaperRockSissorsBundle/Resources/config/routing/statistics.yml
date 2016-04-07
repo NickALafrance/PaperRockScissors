@@ -1,0 +1,24 @@
+statistics_index:
+    path:     /
+    defaults: { _controller: "PaperRockSissorsBundle:Statistics:index" }
+    methods:  GET
+
+statistics_show:
+    path:     /{id}/show
+    defaults: { _controller: "PaperRockSissorsBundle:Statistics:show" }
+    methods:  GET
+
+statistics_new:
+    path:     /new
+    defaults: { _controller: "PaperRockSissorsBundle:Statistics:new" }
+    methods:  [GET, POST]
+
+statistics_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PaperRockSissorsBundle:Statistics:edit" }
+    methods:  [GET, POST]
+
+statistics_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PaperRockSissorsBundle:Statistics:delete" }
+    methods:  DELETE

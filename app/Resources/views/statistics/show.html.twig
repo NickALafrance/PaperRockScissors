@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Statistics</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ statistic.id }}</td>
+            </tr>
+            <tr>
+                <th>Humanfate</th>
+                <td>{{ statistic.humanFate }}</td>
+            </tr>
+            <tr>
+                <th>Computerfate</th>
+                <td>{{ statistic.computerFate }}</td>
+            </tr>
+            <tr>
+                <th>Outcome</th>
+                <td>{{ statistic.outcome }}</td>
+            </tr>
+            <tr>
+                <th>Occurences</th>
+                <td>{{ statistic.occurences }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('statistics_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('statistics_edit', { 'id': statistic.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

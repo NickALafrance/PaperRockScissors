@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Statistics list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Humanfate</th>
+                <th>Computerfate</th>
+                <th>Outcome</th>
+                <th>Occurences</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for statistic in statistics %}
+            <tr>
+                <td><a href="{{ path('statistics_show', { 'id': statistic.id }) }}">{{ statistic.id }}</a></td>
+                <td>{{ statistic.humanFate }}</td>
+                <td>{{ statistic.computerFate }}</td>
+                <td>{{ statistic.outcome }}</td>
+                <td>{{ statistic.occurences }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('statistics_show', { 'id': statistic.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('statistics_edit', { 'id': statistic.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('statistics_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

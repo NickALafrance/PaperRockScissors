@@ -1,3 +1,7 @@
+paper_rock_sissors_statistics:
+    resource: "@PaperRockSissorsBundle/Resources/config/routing/statistics.yml"
+    prefix:   /statistics
+
 paper_rock_sissors_homepage:
     path:     /
     defaults: { _controller: PaperRockSissorsBundle:Default:index }
