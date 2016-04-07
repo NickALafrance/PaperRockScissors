@@ -89,9 +89,13 @@ class DefaultController extends Controller
         //The bool sent in will decide if we want an array for the computer or an array for the human.
         $groupBy = "computerFate";
         $dontGroupBy = 'humanFate';
+        //If you are a computer, a win IS a loss, and a loss is a win.
+        $invertWinLoss = array('WIN' => 'LOSS', 'LOSS' => 'WIN');
         if($human) {
             $groupBy = 'humanFate';
             $dontGroupBy = "computerFate";
+            //But if you are a human, a win is a win!
+            $invertWinLoss = array('LOSS' => 'LOSS', 'WIN' => 'WIN');
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -107,7 +111,7 @@ class DefaultController extends Controller
         //By looping through all the rows in our database and storing them first by human chosen fates
         //and then by the outcome, we have a convenient way to print out granular statistics in twig.
         foreach ($listOfGames as $game) {
-            $statistics[$game[$groupBy]][$game['outcome']][] = array(
+            $statistics[$game[$groupBy]][$invertWinLoss[$game['outcome']]][] = array(
                 $dontGroupBy => $game[$dontGroupBy],
                 'occurences' => $game['occurences']);
         }
