@@ -13,3 +13,4 @@ paper_rock_sissors_play:
 paper_rock_sissors_outcome:
     path:    /{human}/{computer}/{outcome}
     defaults: { _controller: PaperRockSissorsBundle:Default:outcome }
+    methods: [GET, POST]

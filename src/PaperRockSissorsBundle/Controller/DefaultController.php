@@ -8,13 +8,15 @@ use PaperRockSissorsBundle\Entity\FateStatePattern\Rock;
 use PaperRockSissorsBundle\Entity\FateStatePattern\Scissors;
 use PaperRockSissorsBundle\Entity\FateStatePattern\Lizard;
 use PaperRockSissorsBundle\Entity\FateStatePattern\Spock;
+use Symfony\Component\HttpFoundation\Request;
+use PaperRockSissorsBundle\Form\DefaultType;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
         //Just forward us onto the outcome action with the default settings.
-        return $this->redirectToRoute('paper_rock_sissors_outcome', array('human' => "CHOOSE", 'computer' => "YOUR", 'outcome' => "FATE"));
+        return $this->redirectToRoute('paper_rock_sissors_outcome', array('human' => "CHOOSE", 'computer' => "CHOOSE", 'outcome' => "FATE"));
     }
 
     public function playAction($state)
@@ -30,8 +32,18 @@ class DefaultController extends Controller
         return $this->redirectToRoute('statistics_increment', array('human' => $humanFate->getFate(), 'computer' => $computerFate->getFate(), 'outcome' => $outcome));
     }
     
-    public function outcomeAction($human, $computer, $outcome)
+    public function outcomeAction($human, $computer, $outcome, Request $request)
     {
+        $fightForm = new DefaultType();
+        $form = $this->createForm('PaperRockSissorsBundle\Form\DefaultType', $fightForm);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //If we have a POST back, forward the user onto the playAction
+            return $this->redirectToRoute('paper_rock_sissors_play', array('state' => $fightForm->getChooseFate()));
+        }
+
+
         //We played a game and the outcome is in!
         //Lets get our general win loss statistics
         $em = $this->getDoctrine()->getManager();
@@ -62,7 +74,8 @@ class DefaultController extends Controller
         return $this->render('PaperRockSissorsBundle:Default:index.html.twig', array(
             'quickStatistics' => $statistics,
             'granularStatistics' => $granularStatistics,
-            'currentGame' => $currentGame
+            'currentGame' => $currentGame,
+            'form_view' => $form->createView()
         ));
     }
 

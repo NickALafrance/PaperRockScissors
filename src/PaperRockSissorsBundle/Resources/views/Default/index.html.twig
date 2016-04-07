@@ -10,24 +10,24 @@
 
 {% block body %}
 
-    <div class="row">
-        <h1 class="col-xs-offset-3 col-xs-6">Choose Your Fate</h1>
+    <div class="row" id="title">
+        <h1 class="col-xs-offset-4 col-xs-6">Choose Your Fate</h1>
     </div>
 
-    <div class="row">
+    <div class="row" id="participants">
         <h3 class="col-xs-offset-2 col-xs-3">HUMAN</h3>
         <h3 class="col-xs-1">VS</h3>
         <h3 class="col-xs-offset-1 col-xs-3">COMPUTER</h3>
     </div>
 
-    <div class="row">
+    <div class="row" id="quickStatistics">
         <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.winCount }} wins</p>
         <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.lossCount }} wins</p>
     </div>
 
-    <div class="row">
+    <div class="row" id="granularStatistics">
         <div id="xTab1" class="col-xs-5">
-            <ul  class="nav nav-pills">
+            <ul  class="nav nav-tabs">
                 {% for key,value in granularStatistics['human'] %}
                     <li>
                         <a href="#{{ key }}human" data-toggle="tab">{{ key }}</a>
@@ -51,7 +51,7 @@
         </div>
 
         <div id="exTab2" class="col-xs-offset-2 col-xs-5">
-            <ul class="nav nav-pills">
+            <ul class="nav nav-tabs">
                 {% for key,value in granularStatistics['computer'] %}
                     <li>
                         <a href="#{{ key }}computer" data-toggle="tab">{{ key }}</a>
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="outcomeMessagePanel">
         <div class="col-xs-6 col-xs-offset-3">
             {% if currentGame.outcome == "WIN" %}
                 <h2>YOU HAVE PROVEN YOURSELF WORTHY</h2>
@@ -89,11 +89,18 @@
         </div>
     </div>
 
-    <div class="row">
-
+    <div class="row" id="currentFate">
+        <div class="col-xs-offset-1 col-xs-4"><h3>HUMAN HAS CHOSEN : {{ currentGame.humanFate }}</h3></div>
+        <div class="col-xs-offset-2 col-xs-4"><h3>COMPUTER HAS CHOSEN : {{ currentGame.computerFate }} </h3></div>
     </div>
-    human chose {{ currentGame.humanFate }} <br>
-    computer chose {{ currentGame.computerFate }}<br>
+
+    <div class="row" id="fatesChooser">
+        <div class="col-xs-offset-4">
+            {{ form(form_view) }}
+        </div>
+    </div>
+
+
 
 
 
