@@ -1,0 +1,7 @@
+paper_rock_sissors_homepage:
+    path:     /
+    defaults: { _controller: PaperRockSissorsBundle:Default:index }
+
+paper_rock_sissors_play:
+    path:     /{state}
+    defaults: { _controller: PaperRockSissorsBundle:play }

@@ -1,0 +1,4 @@
+paper_rock_sissors:
+    resource: "@PaperRockSissorsBundle/Resources/config/routing.yml"
+    prefix:   /
+
