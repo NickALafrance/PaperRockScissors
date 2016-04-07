@@ -13,7 +13,8 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        //return $this->render('PaperRockSissorsBundle:Default:index.html.twig');
+        //Just forward us onto the outcome action with the default settings.
+        return $this->redirectToRoute('paper_rock_sissors_outcome', array('human' => "CHOOSE", 'computer' => "YOUR", 'outcome' => "FATE"));
     }
 
     public function playAction($state)
@@ -31,10 +32,25 @@ class DefaultController extends Controller
     
     public function outcomeAction($human, $computer, $outcome)
     {
-        //We played a game and the outcome is in.
-        //Lets gather up the results
+        //We played a game and the outcome is in!
+        //Lets get our general win loss statistics
         $em = $this->getDoctrine()->getManager();
-        $statistics = $em->getRepository('PaperRockSissorsBundle:Statistics')->findAll();
+        $qb = $em->createQueryBuilder();
+
+        //Total the wins
+        $qb->select('SUM(s.occurences)')
+            ->from('PaperRockSissorsBundle:Statistics', 's')
+            ->where('s.outcome = \'WIN\'');
+        $statistics['winCount'] = $qb->getQuery()->getSingleResult()[1];
+
+        //total the losses
+        $qb->where('s.outcome = \'LOSS\'');
+        $statistics['lossCount'] = $qb->getQuery()->getSingleResult()[1];
+
+        //Lets now gather up the results from previous games into an array
+        $granularStatistics['human'] = $this->getGranularStatisticsArray(true);
+        $granularStatistics['computer'] = $this->getGranularStatisticsArray(false);
+
         //record what our current game is
         $currentGame = array(
             'humanFate' => $human,
@@ -44,9 +60,45 @@ class DefaultController extends Controller
 
         //and post results!
         return $this->render('PaperRockSissorsBundle:Default:index.html.twig', array(
-            'statistics' => $statistics,
+            'quickStatistics' => $statistics,
+            'granularStatistics' => $granularStatistics,
             'currentGame' => $currentGame
         ));
+    }
+
+    //This will build an array which will retrieve all of the statistics from our database and arrange it into an array
+    //This array will group fates and number of occurences first by all of the fates which have been chosen
+    //then by win or loss
+    //like so : humanFate.WIN.computerFate  This should make looping through this data set easy for twig to handle.
+    //TAKES : true or false, depending on if you want this sorted by human win/losses or sorted by computer win/losses
+    private function getGranularStatisticsArray($human)
+    {
+        //The bool sent in will decide if we want an array for the computer or an array for the human.
+        $groupBy = "computerFate";
+        $dontGroupBy = 'humanFate';
+        if($human) {
+            $groupBy = 'humanFate';
+            $dontGroupBy = "computerFate";
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+
+        //We are going to separate our results into arrays by fate.  Lets get all our game records out of the table.
+        $qb->select(array('s.humanFate', 's.computerFate', 's.outcome', 's.occurences'))
+            ->from('PaperRockSissorsBundle:Statistics', 's')
+            ->where('s.outcome != \'tie\'');
+
+        $listOfGames = $qb->getQuery()->getArrayResult();
+        $statistics = array();
+        //By looping through all the rows in our database and storing them first by human chosen fates
+        //and then by the outcome, we have a convenient way to print out granular statistics in twig.
+        foreach ($listOfGames as $game) {
+            $statistics[$game[$groupBy]][$game['outcome']][] = array(
+                $dontGroupBy => $game[$dontGroupBy],
+                'occurences' => $game['occurences']);
+        }
+        return $statistics;
     }
 
     //This factory method will be in charge of generating fate states.

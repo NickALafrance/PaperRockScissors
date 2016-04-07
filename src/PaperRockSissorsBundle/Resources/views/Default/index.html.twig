@@ -1,30 +1,108 @@
 {% extends 'base.html.twig' %}
 
+{%  block title %} {{ currentGame.outcome }} {% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets '@PaperRockSissorsBundle/Resources/public/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block body %}
 
+    <div class="row">
+        <h1 class="col-xs-offset-3 col-xs-6">Choose Your Fate</h1>
+    </div>
+
+    <div class="row">
+        <h3 class="col-xs-offset-2 col-xs-3">HUMAN</h3>
+        <h3 class="col-xs-1">VS</h3>
+        <h3 class="col-xs-offset-1 col-xs-3">COMPUTER</h3>
+    </div>
+
+    <div class="row">
+        <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.winCount }} wins</p>
+        <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.lossCount }} wins</p>
+    </div>
+
+    <div class="row">
+        <div id="xTab1" class="col-xs-5">
+            <ul  class="nav nav-pills">
+                {% for key,value in granularStatistics['human'] %}
+                    <li>
+                        <a href="#{{ key }}human" data-toggle="tab">{{ key }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="tab-content clearfix">
+                {% for key,value in granularStatistics['human'] %}
+                    <div class="tab-pane" id="{{ key }}human">
+                        {%  for outcome,data in value %}
+                            <div class="col-xs-6">
+                                {{ outcome }} count <br><br>
+                                {% for game in data %}
+                                    {{ game.computerFate }} : {{ game.occurences }}<br>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="exTab2" class="col-xs-offset-2 col-xs-5">
+            <ul class="nav nav-pills">
+                {% for key,value in granularStatistics['computer'] %}
+                    <li>
+                        <a href="#{{ key }}computer" data-toggle="tab">{{ key }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="tab-content clearfix">
+                {% for key,value in granularStatistics['computer'] %}
+                    <div class="tab-pane" id="{{ key }}computer">
+                        {%  for outcome,data in value %}
+                            <div class="col-xs-6">
+                                {{ outcome }} count <br><br>
+                                {% for game in data %}
+                                    {{ game.humanFate }} : {{ game.occurences }}<br>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+            {% if currentGame.outcome == "WIN" %}
+                <h2>YOU HAVE PROVEN YOURSELF WORTHY</h2>
+                {% elseif currentGame.outcome == "TIE" %}
+                <h2>YOU HAVE MATCHED EVEN WITH YOUR OPPONENTS STRENGTH</h2>
+                {% elseif currentGame.outcome == "LOSS" %}
+                <h2>YOU HAVE FALLEN</h2>
+                {% else %}
+                <h2>CHOOSE YOUR FATE</h2>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+
+    </div>
     human chose {{ currentGame.humanFate }} <br>
     computer chose {{ currentGame.computerFate }}<br>
 
-    HUMAN {{ currentGame.outcome }} ! ! <br>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Humanfate</th>
-            <th>Computerfate</th>
-            <th>Outcome</th>
-            <th>Occurences</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for statistic in statistics %}
-            <tr>
-                <td>{{ statistic.humanFate }}</td>
-                <td>{{ statistic.computerFate }}</td>
-                <td>{{ statistic.outcome }}</td>
-                <td>{{ statistic.occurences }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+    '@PaperRockSissorsBundle/Resources/public/js/jquery-1.12.3.min.js'
+    '@PaperRockSissorsBundle/Resources/public/js/bootstrap.min.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
