@@ -32,43 +32,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Statistics.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/Statistics.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StatisticsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Controller/StatisticsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding>
-                <element signature="e#53#98#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FateState.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FateState.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/FateState.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatisticsType.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Form/StatisticsType.php">
+      <file leaf-file-name="Paper.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Paper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+            <state relative-caret-position="289">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rock.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Rock.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Scissors.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Scissors.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Lizard.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Lizard.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Spock.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Spock.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -87,7 +105,12 @@
         <option value="$PROJECT_DIR$/src/PaperRockSissorsBundle/Resources/views/Default/index.html.twig" />
         <option value="$PROJECT_DIR$/src/PaperRockSissorsBundle/Controller/StatisticsController.php" />
         <option value="$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateState.php" />
+        <option value="$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Rock.php" />
+        <option value="$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Scissors.php" />
+        <option value="$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Paper.php" />
         <option value="$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/FateState.php" />
+        <option value="$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Spock.php" />
+        <option value="$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Lizard.php" />
       </list>
     </option>
   </component>
@@ -355,15 +378,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1459987843224</updated>
-      <workItem from="1459987844717" duration="4480000" />
+      <workItem from="1459987844717" duration="5417000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4480000" />
+    <option name="totallyTimeSpent" value="5417000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2498" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="2498" height="1096" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23287672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -411,11 +434,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Resources/views/Default/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Form/StatisticsType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="544">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Spock.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Lizard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Scissors.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Rock.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/Paper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Controller/StatisticsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <element signature="e#53#98#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -427,28 +500,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Controller/StatisticsController.php">
+    <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="e#53#98#0#PHP" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Entity/FateStatePattern/FateState.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PaperRockSissorsBundle/Form/StatisticsType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+        <state relative-caret-position="153">
+          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
           <folding />
         </state>
       </provider>

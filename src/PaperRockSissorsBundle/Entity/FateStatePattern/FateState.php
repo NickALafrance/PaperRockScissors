@@ -38,7 +38,7 @@ class FateState
         return "FATE";
     }
     //GIVES : an array containing all of the other FATES that the current fate wins against.
-    public function getWinArray()
+    final public function getWinArray()
     {
         return $this->winArray;
     }
