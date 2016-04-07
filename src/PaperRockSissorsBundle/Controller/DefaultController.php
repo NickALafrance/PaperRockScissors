@@ -25,14 +25,28 @@ class DefaultController extends Controller
         //Doesn't matter what fate we happened to choose, we don't really care at all so long as they can FIGHT!
         $outcome = $humanFate->fight($computerFate);
 
-        //Lets do a lil testing before we proceed
-        $data = array(
-            "human" => $humanFate->getFate(),
-            "computer" => $computerFate->getFate(),
-            "outcome" => $outcome
+        //redirect to our increment controller
+        return $this->redirectToRoute('statistics_increment', array('human' => $humanFate->getFate(), 'computer' => $computerFate->getFate(), 'outcome' => $outcome));
+    }
+    
+    public function outcomeAction($human, $computer, $outcome)
+    {
+        //We played a game and the outcome is in.
+        //Lets gather up the results
+        $em = $this->getDoctrine()->getManager();
+        $statistics = $em->getRepository('PaperRockSissorsBundle:Statistics')->findAll();
+        //record what our current game is
+        $currentGame = array(
+            'humanFate' => $human,
+            'computerFate' => $computer,
+            'outcome' => $outcome
         );
 
-        return $this->render('PaperRockSissorsBundle:Default:index.html.twig', array("data" => $data));
+        //and post results!
+        return $this->render('PaperRockSissorsBundle:Default:index.html.twig', array(
+            'statistics' => $statistics,
+            'currentGame' => $currentGame
+        ));
     }
 
     //This factory method will be in charge of generating fate states.

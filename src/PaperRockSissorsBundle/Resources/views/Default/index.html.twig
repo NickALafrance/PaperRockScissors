@@ -1,8 +1,30 @@
-Hello World!
+{% extends 'base.html.twig' %}
 
+{% block body %}
 
-Lets look at our current output :
+    human chose {{ currentGame.humanFate }} <br>
+    computer chose {{ currentGame.computerFate }}<br>
 
-HUMAN has chosen : {{data.human}} <br>
-COMPUTER has choseon : {{ data.computer }} <br>
-This has resulted in a : {{ data.outcome }}
+    HUMAN {{ currentGame.outcome }} ! ! <br>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Humanfate</th>
+            <th>Computerfate</th>
+            <th>Outcome</th>
+            <th>Occurences</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for statistic in statistics %}
+            <tr>
+                <td>{{ statistic.humanFate }}</td>
+                <td>{{ statistic.computerFate }}</td>
+                <td>{{ statistic.outcome }}</td>
+                <td>{{ statistic.occurences }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

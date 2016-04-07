@@ -22,3 +22,7 @@ statistics_delete:
     path:     /{id}/delete
     defaults: { _controller: "PaperRockSissorsBundle:Statistics:delete" }
     methods:  DELETE
+
+statistics_increment:
+    path:    /{human}/{computer}/{outcome}
+    defaults: { _controller: "PaperRockSissorsBundle:Statistics:increment" }

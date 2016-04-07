@@ -9,3 +9,7 @@ paper_rock_sissors_homepage:
 paper_rock_sissors_play:
     path:     /{state}
     defaults: { _controller: PaperRockSissorsBundle:Default:play }
+
+paper_rock_sissors_outcome:
+    path:    /{human}/{computer}/{outcome}
+    defaults: { _controller: PaperRockSissorsBundle:Default:outcome }

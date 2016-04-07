@@ -28,6 +28,33 @@ class StatisticsController extends Controller
         ));
     }
 
+    //This will be able to add match to our statistics.
+    //TAKES : the chosen fate of the human, the chosen fate of the computer, and the outcome.
+    //GIVES : Will add one occurence of that game to the database and then redirect to what our outcome was.
+    public function incrementAction($human, $computer, $outcome)
+    {
+        $em = $this->getDoctrine()->getManager();
+        //We will try to find an occurence of the game that just happened.
+        //The statistic table is actually just a record of every single game outcome that has ever been seen, and how many times that outcome has been reached.
+        $matchStatistic = $em->getRepository('PaperRockSissorsBundle:Statistics')->findOneBy(array('humanFate' => $human, 'computerFate' => $computer));
+        if ($matchStatistic == null) {
+            //If that game has never been played before, lets add it with zero occurences
+            $matchStatistic = new Statistics();
+            $matchStatistic->setHumanFate($human);
+            $matchStatistic->setComputerFate($computer);
+            $matchStatistic->setOutcome($outcome);
+            $matchStatistic->setOccurences(0);
+        }
+        //increment our occurrence by one in order to remember this game outcome
+        //Lets hope hundreds of people aren't trying to use this game all at once, we will be in trouble...
+        $matchStatistic->setOccurences($matchStatistic->getOccurences() + 1);
+        //and save!
+        $em->persist($matchStatistic);
+        $em->flush();
+        //And now lets transition to our outcome controller to finish this up.
+        return $this->redirectToRoute('paper_rock_sissors_outcome', array('human' => $human, 'computer' => $computer, 'outcome' => $outcome));
+    }
+
     /**
      * Creates a new Statistics entity.
      *
