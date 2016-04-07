@@ -8,4 +8,4 @@ paper_rock_sissors_homepage:
 
 paper_rock_sissors_play:
     path:     /{state}
-    defaults: { _controller: PaperRockSissorsBundle:play }
+    defaults: { _controller: PaperRockSissorsBundle:Default:play }

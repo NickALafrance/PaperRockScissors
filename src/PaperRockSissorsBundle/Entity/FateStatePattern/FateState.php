@@ -13,7 +13,7 @@ namespace PaperRockSissorsBundle\Entity\FateStatePattern;
 class FateState
 {
     //The parent FATE will win against nothing.
-    protected $winArray = array();
+    public $winArray = array();
 
     //this will match this fate state against an opposing fate state to determine a winner!
     //TAKES : another subclass of fateState
@@ -21,12 +21,12 @@ class FateState
     final public function fight($computerFate)
     {
         //First things first, if the names match, we have a tie
-        if($this->getFate() == $computerFate->getFate()){
+        if($this->getFate() == $computerFate->getFate()) {
             return "TIE";
         }
         //Each child of this class will have a Win Array.
         //If the name of the computer's chosen fate is found within this win array, human has won!
-        if(in_array($computerFate->getFate() ,$this->getWinArray())){
+        if(in_array($computerFate->getFate() ,$this->getWinArray())) {
             return "WIN";
         }
         //Otherwise, we must have lost.
@@ -38,7 +38,7 @@ class FateState
         return "FATE";
     }
     //GIVES : an array containing all of the other FATES that the current fate wins against.
-    final public function getWinArray()
+    public function getWinArray()
     {
         return $this->winArray;
     }

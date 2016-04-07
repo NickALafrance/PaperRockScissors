@@ -12,7 +12,7 @@ namespace PaperRockSissorsBundle\Entity\FateStatePattern;
 class Lizard extends FateState
 {
     //Array of things lizard wins against
-    private $winArray = array("spock", "paper");
+    public $winArray = array("spock", "paper");
 
     //GIVES : name of the current fate.
     public function getFate()
