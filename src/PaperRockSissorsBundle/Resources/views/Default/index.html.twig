@@ -21,8 +21,8 @@
     </div>
 
     <div class="row" id="quickStatistics">
-        <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.winCount }} wins out of {{ quickStatistics.totalCount }} games</p>
-        <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.lossCount }} wins out of {{ quickStatistics.totalCount }} games</p>
+        <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.winCount|default('0') }} wins out of {{ quickStatistics.totalCount|default('0') }} games</p>
+        <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.lossCount|default('0') }} wins out of {{ quickStatistics.totalCount|default('0') }} games</p>
     </div>
 
     <div class="row" id="granularStatistics">
