@@ -29,14 +29,19 @@
         <div id="xTab1" class="col-xs-5">
             <ul  class="nav nav-tabs">
                 {% for key,value in granularStatistics['human'] %}
-                    <li>
-                        <a href="#{{ key }}human" data-toggle="tab">{{ key }}</a>
+                    <li{% if currentGame.humanFate == key %}
+                            class="active"
+                        {% endif %}>
+                        <a href="#{{ key }}human" data-toggle="tab"> {{ key }}</a>
                     </li>
                 {% endfor %}
             </ul>
             <div class="tab-content clearfix">
                 {% for key,value in granularStatistics['human'] %}
-                    <div class="tab-pane" id="{{ key }}human">
+                    <div class="tab-pane{% if currentGame.humanFate == key %}
+                            active
+                        {% endif %}"
+                        id="{{ key }}human">
                         {%  for outcome,data in value %}
                             <div class="col-xs-6">
                                 {{ outcome }} count <br><br>
@@ -53,14 +58,19 @@
         <div id="exTab2" class="col-xs-offset-2 col-xs-5">
             <ul class="nav nav-tabs">
                 {% for key,value in granularStatistics['computer'] %}
-                    <li>
+                    <li{% if currentGame.computerFate == key %}
+                            class="active"
+                        {% endif %}>
                         <a href="#{{ key }}computer" data-toggle="tab">{{ key }}</a>
                     </li>
                 {% endfor %}
             </ul>
             <div class="tab-content clearfix">
                 {% for key,value in granularStatistics['computer'] %}
-                    <div class="tab-pane" id="{{ key }}computer">
+                    <div class="tab-pane{% if currentGame.computerFate == key %}
+                            active
+                        {% endif %}"
+                         id="{{ key }}computer">
                         {%  for outcome,data in value %}
                             <div class="col-xs-6">
                                 {{ outcome }} count <br><br>
@@ -80,7 +90,7 @@
             {% if currentGame.outcome == "WIN" %}
                 <h2>YOU HAVE PROVEN YOURSELF WORTHY</h2>
                 {% elseif currentGame.outcome == "TIE" %}
-                <h2>YOU HAVE MATCHED EVEN WITH YOUR OPPONENTS STRENGTH</h2>
+                <h2>YOU HAVE MATCHED EVEN WITH YOUR OPPONENT'S STRENGTH</h2>
                 {% elseif currentGame.outcome == "LOSS" %}
                 <h2>YOU HAVE FALLEN</h2>
                 {% else %}
@@ -90,8 +100,8 @@
     </div>
 
     <div class="row" id="currentFate">
-        <div class="col-xs-offset-1 col-xs-4"><h3>HUMAN HAS CHOSEN : {{ currentGame.humanFate }}</h3></div>
-        <div class="col-xs-offset-2 col-xs-4"><h3>COMPUTER HAS CHOSEN : {{ currentGame.computerFate }} </h3></div>
+        <div class="col-xs-offset-1 col-xs-4"><h3>HUMAN HAS CHOSEN <br> {{ currentGame.humanFate|upper }}</h3></div>
+        <div class="col-xs-offset-2 col-xs-4"><h3>COMPUTER HAS CHOSEN <br> {{ currentGame.computerFate|upper }}</h3></div>
     </div>
 
     <div class="row" id="fatesChooser">

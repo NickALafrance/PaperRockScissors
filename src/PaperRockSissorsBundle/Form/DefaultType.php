@@ -29,7 +29,9 @@ class DefaultType extends AbstractType
                 'Spock' => 'Spock'
                 ))
             )
-            ->add('submit', SubmitType::class)
+            ->add('begin', SubmitType::class, array(
+                'attr' => array('class' => 'btn btn-danger')
+            ))
             ->setMethod('POST');
     }
 
