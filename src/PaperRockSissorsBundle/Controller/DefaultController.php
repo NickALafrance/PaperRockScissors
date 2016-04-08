@@ -59,6 +59,9 @@ class DefaultController extends Controller
         $qb->where('s.outcome = \'LOSS\'');
         $statistics['lossCount'] = $qb->getQuery()->getSingleResult()[1];
 
+        $qb->where('1=1');
+        $statistics['totalCount'] = $qb->getQuery()->getSingleResult()[1];
+
         //Lets now gather up the results from previous games into an array
         $granularStatistics['human'] = $this->getGranularStatisticsArray(true);
         $granularStatistics['computer'] = $this->getGranularStatisticsArray(false);
@@ -90,12 +93,12 @@ class DefaultController extends Controller
         $groupBy = "computerFate";
         $dontGroupBy = 'humanFate';
         //If you are a computer, a win IS a loss, and a loss is a win.
-        $invertWinLoss = array('WIN' => 'LOSS', 'LOSS' => 'WIN');
+        $invertWinLoss = array('WIN' => 'LOSS', 'LOSS' => 'WIN', 'TIE' => 'TIE');
         if($human) {
             $groupBy = 'humanFate';
             $dontGroupBy = "computerFate";
             //But if you are a human, a win is a win!
-            $invertWinLoss = array('LOSS' => 'LOSS', 'WIN' => 'WIN');
+            $invertWinLoss = array('LOSS' => 'LOSS', 'WIN' => 'WIN', 'TIE' => 'TIE');
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -103,8 +106,7 @@ class DefaultController extends Controller
 
         //We are going to separate our results into arrays by fate.  Lets get all our game records out of the table.
         $qb->select(array('s.humanFate', 's.computerFate', 's.outcome', 's.occurences'))
-            ->from('PaperRockSissorsBundle:Statistics', 's')
-            ->where('s.outcome != \'tie\'');
+            ->from('PaperRockSissorsBundle:Statistics', 's');
 
         $listOfGames = $qb->getQuery()->getArrayResult();
         $statistics = array();
@@ -114,6 +116,10 @@ class DefaultController extends Controller
             $statistics[$game[$groupBy]][$invertWinLoss[$game['outcome']]][] = array(
                 $dontGroupBy => $game[$dontGroupBy],
                 'occurences' => $game['occurences']);
+            if(!isset($statistics[$game[$groupBy]]['total'])) {
+                $statistics[$game[$groupBy]]['total'] = 0;
+            }
+            $statistics[$game[$groupBy]]['total'] += $game['occurences'];
         }
         return $statistics;
     }

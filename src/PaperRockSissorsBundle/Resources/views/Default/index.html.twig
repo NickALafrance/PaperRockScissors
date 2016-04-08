@@ -21,8 +21,8 @@
     </div>
 
     <div class="row" id="quickStatistics">
-        <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.winCount }} wins</p>
-        <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.lossCount }} wins</p>
+        <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.winCount }} wins out of {{ quickStatistics.totalCount }} games</p>
+        <p class="col-xs-offset-2 col-xs-3">{{ quickStatistics.lossCount }} wins out of {{ quickStatistics.totalCount }} games</p>
     </div>
 
     <div class="row" id="granularStatistics">
@@ -32,7 +32,7 @@
                     <li{% if currentGame.humanFate == key %}
                             class="active"
                         {% endif %}>
-                        <a href="#{{ key }}human" data-toggle="tab"> {{ key }}</a>
+                        <a href="#{{ key }}human" data-toggle="tab"> {{ key }}<br>({{ value.total }})</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -43,12 +43,14 @@
                         {% endif %}"
                         id="{{ key }}human">
                         {%  for outcome,data in value %}
-                            <div class="col-xs-6">
-                                {{ outcome }} count <br><br>
-                                {% for game in data %}
-                                    {{ game.computerFate }} : {{ game.occurences }}<br>
-                                {% endfor %}
-                            </div>
+                            {% if outcome != "total" %}
+                                <div class="col-xs-4">
+                                    {{ outcome }} count <br><br>
+                                    {% for game in data %}
+                                        {{ game.computerFate }} : {{ game.occurences }}<br>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 {% endfor %}
@@ -58,10 +60,11 @@
         <div id="exTab2" class="col-xs-offset-2 col-xs-5">
             <ul class="nav nav-tabs">
                 {% for key,value in granularStatistics['computer'] %}
-                    <li{% if currentGame.computerFate == key %}
+                    <li
+                        {% if currentGame.computerFate == key %}
                             class="active"
                         {% endif %}>
-                        <a href="#{{ key }}computer" data-toggle="tab">{{ key }}</a>
+                        <a href="#{{ key }}computer" data-toggle="tab">{{ key }}<br>({{ value.total }})</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -72,12 +75,14 @@
                         {% endif %}"
                          id="{{ key }}computer">
                         {%  for outcome,data in value %}
-                            <div class="col-xs-6">
-                                {{ outcome }} count <br><br>
-                                {% for game in data %}
-                                    {{ game.humanFate }} : {{ game.occurences }}<br>
-                                {% endfor %}
-                            </div>
+                            {% if outcome != "total" %}
+                                <div class="col-xs-4">
+                                    {{ outcome }} count <br><br>
+                                    {% for game in data %}
+                                        {{ game.humanFate }} : {{ game.occurences }}<br>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 {% endfor %}
